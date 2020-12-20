@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th ="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Info</title>
+</head>
+
+<style>
+
+    *{margin: 0; padding: 0;}
+    body{font-family: sans-serif;}
+
+    .form-wrap{ width: 320px; padding: 40px 20px; position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%);}
+    h1{text-align: center; font-weight: normal; margin-bottom: 20px;}
+
+    input{width: 100%; border: 1px solid; border-radius: 3px; padding: 6px 15px; box-sizing: border-box; margin-bottom: 20px; font-size: 16px;}
+
+    input[type="submit"]{background: cadetblue; border: 0; cursor: pointer;}
+
+    ::placeholder{color: rgba(5, 19, 62, 0.22);}
+
+</style>
+
+<body>
+
+<h1 align="center"><span th:text="${name}"></span></h1>
+<hr>
+
+<div class="form-wrap">
+    <form th:action="@{/student/save}" th:object="${student}" th:method="POST">
+        First Name: <input type="text" placeholder="First Name" name="" th:field="*{firstName}">
+        Last Name: <input type="text" placeholder="Last Name" name="" th:field="*{lastName}">
+        Email: <input type="text" name="" th:field="*{email}">
+        Phone Number: <input type="text" placeholder="(000) 00000" name="" th:field="*{phoneNo}">
+        Birthday: <input type="text" id="birthdaytime" name="birthdaytime" th:field="*{birthday}">
+        Course: <br>
+        <select th:field="*{course}">
+            <option th:each="n : ${courses}" th:value="${n}" th:text="${n}">
+        </select><br>
+        <input type="Submit" th:value="${hello}">
+    </form>
+</div>
+
+</body>
+</html>
